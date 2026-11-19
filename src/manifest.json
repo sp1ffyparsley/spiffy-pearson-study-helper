@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Spiffy Pearson Study Helper",
+  "short_name": "Pearson Study",
+  "version": "0.1.0",
+  "description": "Captures rendered Pearson practice questions and asks ChatGPT through the local Chat On Steroids bridge.",
+  "incognito": "not_allowed",
+  "icons": {
+    "16": "assets/icon.svg",
+    "32": "assets/icon.svg",
+    "48": "assets/icon.svg",
+    "96": "assets/icon.svg"
+  },
+  "action": {
+    "default_title": "Run Pearson practice questions",
+    "default_icon": "assets/icon.svg"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "ask-question": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      },
+      "description": "Run the guarded Pearson practice-question loop"
+    }
+  },
+  "permissions": ["activeTab", "storage", "webNavigation", "clipboardWrite"],
+  "host_permissions": [
+    "https://*.pearson.com/*",
+    "https://*.pearsoncmg.com/*",
+    "https://*.mylabmastering.com/*",
+    "https://*.mathxl.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.pearson.com/*",
+        "https://*.pearsoncmg.com/*",
+        "https://*.mylabmastering.com/*",
+        "https://*.mathxl.com/*"
+      ],
+      "js": ["content.js"],
+      "all_frames": true,
+      "match_about_blank": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none'"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "spiffy-pearson-study-helper@spiffy.local",
+      "strict_min_version": "142.0",
+      "data_collection_permissions": {
+        "required": ["websiteContent", "websiteActivity"]
+      }
+    }
+  }
+}

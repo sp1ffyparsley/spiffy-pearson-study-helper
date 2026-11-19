@@ -1,0 +1,40 @@
+# Install dependencies from package-lock.json; never commit local binaries.
+/node_modules/
+
+# Generated extension bundles and unsigned packages.
+/dist/
+/coverage/
+/.vitest/
+/.cache/
+/.web-ext/
+/web-ext-artifacts/
+/web-ext-profile*/
+
+# Local debugging and developer state.
+*.log
+*.log.*
+*.tmp
+*.temp
+*.bak
+*.old
+*.dmp
+.DS_Store
+Thumbs.db
+/.vscode/
+/.idea/
+
+# Private tokens, credentials and local test state.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.db
+*.sqlite
+*.sqlite3
+*.db-shm
+*.db-wal
+*.sqlite-wal
+*.sqlite-shm

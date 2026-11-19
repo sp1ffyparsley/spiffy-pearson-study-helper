@@ -1,0 +1,10 @@
+* text=auto
+*.md text eol=lf
+*.ts text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.svg text eol=lf
+*.xpi binary
+*.zip binary
+*.png binary
+*.webp binary

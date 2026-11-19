@@ -1,0 +1,32 @@
+{
+  "name": "spiffy-pearson-study-helper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Firefox Pearson practice helper using rendered screenshots and the local Chat On Steroids ChatGPT bridge.",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "clean": "node scripts/build.mjs clean",
+    "build": "node scripts/build.mjs build",
+    "package": "npm run build && node scripts/package.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build",
+    "release:check": "npm run check && web-ext lint --source-dir dist/firefox && node scripts/package.mjs && node scripts/verify-release.mjs",
+    "dev:firefox": "node scripts/dev-firefox.mjs",
+    "lint:addon": "npm run build && web-ext lint --source-dir dist/firefox"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "12.3.0",
+    "@types/firefox-webext-browser": "143.0.0",
+    "@types/node": "24.10.1",
+    "jszip": "3.10.1",
+    "rollup": "4.63.1",
+    "tslib": "2.8.1",
+    "typescript": "5.9.3",
+    "vitest": "5.0.0",
+    "web-ext": "10.7.0"
+  }
+}
